@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ts:token xmlns:ts="http://tokenscript.org/2024/01/tokenscript"
+          xmlns:xml="http://www.w3.org/XML/1998/namespace"
+          xsi:schemaLocation="http://tokenscript.org/2024/01/tokenscript https://www.tokenscript.org/schemas/2024-01/tokenscript.xsd"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:ethereum="urn:ethereum:constantinople"
+          name="ThisToken">  
+    <ts:label>
+        <ts:plurals xml:lang="en">
+            <ts:string quantity="one">
+                MyToken Token
+            </ts:string>
+            <ts:string quantity="other">
+                MyToken Tokens
+            </ts:string>
+        </ts:plurals>
+    </ts:label>
+    <ts:meta>
+        <ts:description xml:lang="en">
+        </ts:description>
+        <ts:aboutUrl xml:lang="en">
+        </ts:aboutUrl>
+        <ts:iconUrl xml:lang="en">
+           https://ipfs.io/ipfs/QmQgPRvpucr7FgCKXHfAUJaV1a3EoKX3guDBiDt1zozFrv
+        </ts:iconUrl>
+    </ts:meta>
+    <ts:contract interface="erc721" name="ThisToken">
+        <ts:address network="11155111">0x87e047b31a5c076d63c7442f7b468e189044f08c</ts:address>
+    </ts:contract>
+    <ts:origins>
+        <ts:ethereum contract="ThisToken"/>
+    </ts:origins>
+    <ts:cards>
+        <ts:card type="action" name="mint" buttonClass="primary" origins="ThisToken">
+            <ts:label>
+                <ts:string xml:lang="en">
+                    Mint
+                </ts:string>
+            </ts:label>
+            <ts:transaction>
+                <ethereum:transaction function="mint" contract="ThisToken">
+                    <ts:data/>
+                </ethereum:transaction>
+            </ts:transaction>
+            <ts:view xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+              <p>Mint your very own MyToken Token! Click the Mint button below to receive a token directly to your wallet.</p>
+            </ts:view>
+        </ts:card>
+        <ts:card type="action" name="burn" buttonClass="primary" origins="ThisToken">
+            <ts:label>
+                <ts:string xml:lang="en">
+                    Burn
+                </ts:string>
+            </ts:label>
+            <ts:transaction>
+                <ethereum:transaction function="burn" contract="ThisToken">
+                    <ts:data>
+                        <ts:uint256 ref="tokenId"/>
+                    </ts:data>
+                </ethereum:transaction>
+            </ts:transaction>
+            <ts:view xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+              <p>Burn this token. Warning - once burned the token is gone.</p>
+            </ts:view>
+        </ts:card>
+        <ts:card type="onboarding" name="purchase" buttonClass="primary">
+            <ts:label>
+                <ts:string xml:lang="en">
+                    Mint
+                </ts:string>
+            </ts:label>
+        
+            <ts:transaction>
+                <ethereum:transaction function="mint" contract="ThisToken">
+                    <ts:data/>
+                </ethereum:transaction>
+            </ts:transaction>
+            <ts:view xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+                <p>This is an onboarding card for MyToken token</p>
+                <br/>
+                <p>Use this to mint your own tokens.</p>
+            </ts:view>
+        </ts:card>        
+    </ts:cards>
+    <ts:attribute name="totalSupply">
+        <ts:type>
+            <ts:syntax>1.3.6.1.4.1.1466.115.121.1.36</ts:syntax>
+        </ts:type>
+        <ts:label>
+            <ts:string xml:lang="en">
+                totalSupply
+            </ts:string>
+        </ts:label>
+        <ts:origins>
+            <ethereum:call function="totalSupply" contract="ThisToken" as="uint">
+                <ts:data/>
+            </ethereum:call>
+        </ts:origins>
+    </ts:attribute>
+</ts:token>
